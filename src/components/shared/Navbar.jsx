@@ -3,30 +3,44 @@ import Image from "next/image";
 import NavLink from "./NavLink";
 import Link from "next/link";
 import { Button } from "@heroui/react";
+import { NavbarMenu } from "./NavbarMenu";
+import { House, Person } from "@gravity-ui/icons";
+import { FaBook } from "react-icons/fa6";
 
 const Navbar = () => {
+  const navItems = [
+    { icon: House, label: "Home", href: "/" },
+    { icon: FaBook, label: "All Books", href: "all-book" },
+    { icon: Person, label: "My Profile", href: "profile" },
+  ];
   return (
     <div className="shadow">
       <div className="container mx-auto flex justify-between items-center">
-        <Link href={"/"}>
-          <Image
-            className="w-55"
-            src={logo}
-            alt="logo"
-            height={50}
-            width={100}
-          />
-        </Link>
-        <ul className="flex gap-4">
-          <li>
-            <NavLink href={"/"}>Home</NavLink>
-          </li>
-          <li>
-            <NavLink href={"/all-books"}>All Books</NavLink>
-          </li>
-          <li>
-            <NavLink href={"/profile"}>My Profile</NavLink>
-          </li>
+        <div className="flex items-center">
+          <button className="rounded-sm md:hidden ">
+            <NavbarMenu />
+          </button>
+          <Link href={"/"}>
+            <Image
+              className="w-55"
+              src={logo}
+              alt="logo"
+              height={50}
+              width={100}
+            />
+          </Link>
+        </div>
+        <ul className="hidden md:flex items-center space-x-6">
+          {navItems.map((item) => (
+            <NavLink
+              classname={"flex items-center gap-1"}
+              key={item.label}
+              href={item.href}
+            >
+              <item.icon className="size-5 text-muted" />
+              {item.label}
+            </NavLink>
+          ))}
         </ul>
         <ul className="flex items-center gap-2">
           <li>
