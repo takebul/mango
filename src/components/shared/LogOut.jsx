@@ -11,8 +11,8 @@ const LogOutPage = () => {
     await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
-          toast.success("Log out successful");
           router.push("/");
+          toast.success("Log out successful");
         },
       },
     });
@@ -25,7 +25,7 @@ const LogOutPage = () => {
         className={"rounded-sm"}
         variant="danger"
       >
-        <p>Log Out</p>
+        Log Out
       </Button>
     </div>
   );

@@ -62,7 +62,7 @@ const Navbar = () => {
                   "rounded-sm bg-linear-to-r from-emerald-400 from-10% via-amber-300-500 via-30% to-emerald-600 to-90%"
                 }
               >
-                <Link href={"/signup"}>Login</Link>
+                <Link href={"/signin"}>Login</Link>
               </Button>
             </div>
           )}

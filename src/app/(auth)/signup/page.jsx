@@ -36,8 +36,8 @@ const SignUpPage = () => {
       image,
       fetchOptions: {
         onSuccess: () => {
-          toast.success("Sign up successful");
           router.push("/login");
+          toast.success("Sign up successful");
         },
       },
     });
@@ -151,13 +151,17 @@ const SignUpPage = () => {
         </div>
       </Form>
       <h2 className="text-gray-500 text-center pt-6">
-        Already have an account?{" "}
+        Already have an account?{"  "}
         <Link className="font-semibold text-blue-500" href={"/signin"}>
           Sign In
         </Link>{" "}
       </h2>
       <div>
-        <Separator className="my-7" />
+        <div className="flex items-center relative my-5 ">
+          <Separator className="my-7 absolute" />
+          <p className=" pl-35 md:pl-50 lg:pl-57">OR</p>
+          <Separator className="my-7 absolute" />
+        </div>
       </div>
       <Button
         onClick={signInGoogle}
