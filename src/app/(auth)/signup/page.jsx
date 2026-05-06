@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { Check, Eye, EyeSlash } from "@gravity-ui/icons";
 import {
   Button,
@@ -12,11 +13,36 @@ import {
   TextField,
 } from "@heroui/react";
 import { Icon } from "@iconify/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const SignUpPage = () => {
+  const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
-  const onSubmit = () => {};
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const image = e.target.image.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    const { data, error } = await authClient.signUp.email({
+      name,
+      email,
+      password,
+      image,
+      fetchOptions: {
+        onSuccess: () => {
+          toast.success("Sign up successful");
+          router.push("/login");
+        },
+        onError: (error) => {
+          toast.error(error.message);
+        },
+      },
+    });
+  };
   return (
     <div className="border rounded-lg p-4 w-xl mx-auto my-10 bg-yellow-50">
       <Form className="flex flex-col gap-4" onSubmit={onSubmit}>
