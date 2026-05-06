@@ -1,7 +1,4 @@
 import allBooksImg from "@/assets/books/all-books.png";
-import scienceCategoryImg from "@/assets/books/science-category-books.png";
-import storyCategoryImg from "@/assets/books/story-category-books.png";
-import techCategoryImg from "@/assets/books/tech-category-books.png";
 import { Button } from "@heroui/react";
 import Image from "next/image";
 
