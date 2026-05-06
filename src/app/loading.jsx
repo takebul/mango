@@ -8,9 +8,9 @@ const Loading = () => {
         loop
         autoplay
       />
-      <h2 className="text-3xl font-bold text-gray-600 text-center">
+      {/* <h2 className="text-3xl font-bold text-gray-600 text-center">
         Searching...
-      </h2>
+      </h2> */}
     </div>
   );
 };

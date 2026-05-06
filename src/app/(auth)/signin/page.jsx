@@ -22,18 +22,15 @@ const SignInPage = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    const { data, error } = await authClient.signIn.email(
-      {
-        email,
-        password,
-        callbackURL: "/",
-      },
-      {
-        onSuccess: () => {
-          toast.success("Log in successful");
-        },
-      },
-    );
+    const { data, error } = await authClient.signIn.email({
+      email,
+      password,
+      callbackURL: "/",
+    });
+
+    if (data) {
+      toast.success("Sign in successful");
+    }
 
     if (error) {
       toast.error(error.message);
