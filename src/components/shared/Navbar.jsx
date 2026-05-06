@@ -69,13 +69,13 @@ const Navbar = () => {
 
           {userData && (
             <div className="flex items-center gap-2 md:gap-4">
-              <h2 className="font-semibold">Hi, {userData.user.name} </h2>
+              <h2 className="font-semibold">Hi, {userData?.user?.name} </h2>
               <Avatar>
                 <Avatar.Image
-                  alt={userData.user.name}
-                  src={userData.user.image}
+                  alt={userData?.user?.name}
+                  src={userData?.user?.image}
                 />
-                <Avatar.Fallback>{userData.user.name[0]}</Avatar.Fallback>
+                <Avatar.Fallback>{userData?.user?.name[0]}</Avatar.Fallback>
               </Avatar>
               <LogOutPage />
             </div>
