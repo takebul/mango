@@ -6,6 +6,7 @@ import { Button } from "@heroui/react";
 import { NavbarMenu } from "./NavbarMenu";
 import { House, Person } from "@gravity-ui/icons";
 import { FaBook } from "react-icons/fa6";
+import LogOutPage from "./LogOut";
 
 const Navbar = () => {
   const navItems = [
@@ -53,9 +54,7 @@ const Navbar = () => {
             </Button>
           </li>
           <li>
-            <Button className={"rounded-sm"} variant="danger">
-              <Link href={"/"}>Logout</Link>
-            </Button>
+            <LogOutPage />
           </li>
         </ul>
       </div>

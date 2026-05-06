@@ -46,9 +46,15 @@ const SignUpPage = () => {
       toast.error(error.message);
     }
   };
+
   const signInGoogle = async () => {
     const data = await authClient.signIn.social({
       provider: "google",
+      // fetchOptions: {
+      //   onSuccess: () => {
+      //     toast.success("Sign in successful");
+      //   },
+      // },
     });
     console.log({ data });
     if (data) {
@@ -57,6 +63,8 @@ const SignUpPage = () => {
     if (!data) {
       toast.error(error.message);
     }
+
+    // toast.success("Sign in successful");
   };
   return (
     <div className="border rounded-lg p-4 w-xs md:w-md mx-auto my-10 bg-slate-100 lg:w-lg">
