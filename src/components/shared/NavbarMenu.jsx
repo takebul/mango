@@ -1,6 +1,5 @@
 import { Bars, House, Person } from "@gravity-ui/icons";
 import { Button, Drawer } from "@heroui/react";
-import NavLink from "./NavLink";
 import { FaBook } from "react-icons/fa6";
 import Link from "next/link";
 

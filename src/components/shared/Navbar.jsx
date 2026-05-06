@@ -17,9 +17,9 @@ const Navbar = () => {
     <div className="shadow">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
-          <button className="rounded-sm md:hidden ">
+          <div className="btn md:hidden ">
             <NavbarMenu />
-          </button>
+          </div>
           <Link href={"/"}>
             <Image
               className="w-55"

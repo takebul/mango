@@ -8,7 +8,7 @@ import book6 from "@/assets/books/book6.png";
 import book7 from "@/assets/books/book7.png";
 import book8 from "@/assets/books/book8.png";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCube, Navigation, Autoplay, FreeMode } from "swiper/modules";
+import { EffectCube, Autoplay, FreeMode } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/effect-cube";
@@ -19,15 +19,14 @@ const SwiperPage = () => {
   return (
     <div className="container mx-auto">
       <Swiper
-        modules={[EffectCube, Navigation, Autoplay, FreeMode]}
+        modules={[EffectCube, Autoplay, FreeMode]}
         effect="slide"
-        speed={2000}
+        speed={10000}
         loop={true}
         cubeEffect={{
           shadowOffset: 25,
           shadowScale: 0.9,
         }}
-        navigation={true}
         autoplay={{
           delay: 2000,
         }}
@@ -35,73 +34,73 @@ const SwiperPage = () => {
       >
         <SwiperSlide>
           <Image
-            className="w-full h-[80vh]"
+            className="w-full h-[70vh] object-contain"
             src={book1}
             width={300}
-            height={300}
+            height={400}
             alt="book"
           />
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            className="w-full h-[80vh]"
+            className="w-full h-[70vh] object-contain"
             src={book2}
             width={300}
-            height={300}
+            height={400}
             alt="book"
           />
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            className="w-full h-[80vh]"
+            className="w-full h-[70vh] object-contain"
             src={book3}
             width={300}
-            height={300}
+            height={400}
             alt="book"
           />
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            className="w-full h-[80vh]"
+            className="w-full h-[70vh] object-contain"
             src={book4}
             width={300}
-            height={300}
+            height={400}
             alt="book"
           />
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            className="w-full h-[80vh]"
+            className="w-full h-[70vh] object-contain"
             src={book5}
             width={300}
-            height={300}
+            height={400}
             alt="book"
           />
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            className="w-full h-[80vh]"
+            className="w-full h-[70vh] object-contain"
             src={book6}
             width={300}
-            height={300}
+            height={400}
             alt="book"
           />
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            className="w-full h-[80vh]"
+            className="w-full h-[70vh] object-contain"
             src={book7}
             width={300}
-            height={300}
+            height={400}
             alt="book"
           />
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            className="w-full h-[80vh]"
+            className="w-full h-[70vh] object-contain"
             src={book8}
             width={300}
-            height={300}
+            height={400}
             alt="book"
           />
         </SwiperSlide>
