@@ -32,7 +32,7 @@ export function NavbarMenu() {
                 {navItems.map((item) => (
                   <button
                     key={item.label}
-                    className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-default"
+                    className="flex items-center gap-3 rounded-xl px-1 py-2.5 text-sm text-foreground transition-colors hover:bg-default"
                     type="button"
                   >
                     <item.icon className="size-5 text-muted" />

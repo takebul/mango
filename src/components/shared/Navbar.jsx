@@ -1,14 +1,24 @@
+"use client";
 import logo from "@/assets/mango.png";
 import Image from "next/image";
 import NavLink from "./NavLink";
 import Link from "next/link";
-import { Button } from "@heroui/react";
+import { Avatar, Button } from "@heroui/react";
 import { NavbarMenu } from "./NavbarMenu";
 import { House, Person } from "@gravity-ui/icons";
 import { FaBook } from "react-icons/fa6";
 import LogOutPage from "./LogOut";
+import { useSession } from "@/lib/auth-client";
 
 const Navbar = () => {
+  const session = useSession();
+  console.log({ session }, "session");
+
+  const userData = session.data;
+  // const user = data.user;
+
+  console.log(userData, "user");
+
   const navItems = [
     { icon: House, label: "Home", href: "/" },
     { icon: FaBook, label: "All Books", href: "all-book" },
@@ -16,7 +26,7 @@ const Navbar = () => {
   ];
   return (
     <div className="shadow">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="w-auto lg:container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <div className="btn md:hidden ">
             <NavbarMenu />
@@ -43,20 +53,34 @@ const Navbar = () => {
             </NavLink>
           ))}
         </ul>
-        <ul className="flex items-center gap-2">
-          <li>
-            <Button
-              className={
-                "rounded-sm bg-linear-to-r from-emerald-400 from-10% via-amber-300-500 via-30% to-emerald-600 to-90%"
-              }
-            >
-              <Link href={"/signup"}>Login</Link>
-            </Button>
-          </li>
-          <li>
-            <LogOutPage />
-          </li>
-        </ul>
+
+        <div className="flex items-center gap-2">
+          {!userData && (
+            <div>
+              <Button
+                className={
+                  "rounded-sm bg-linear-to-r from-emerald-400 from-10% via-amber-300-500 via-30% to-emerald-600 to-90%"
+                }
+              >
+                <Link href={"/signup"}>Login</Link>
+              </Button>
+            </div>
+          )}
+
+          {userData && (
+            <div className="flex items-center gap-2 md:gap-4">
+              <h2 className="font-semibold">Hi, {userData.user.name} </h2>
+              <Avatar>
+                <Avatar.Image
+                  alt={userData.user.name}
+                  src={userData.user.image}
+                />
+                <Avatar.Fallback>{userData.user.name[0]}</Avatar.Fallback>
+              </Avatar>
+              <LogOutPage />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -19,7 +19,12 @@ const LogOutPage = () => {
   };
   return (
     <div>
-      <Button onClick={signOutBtn} className={"rounded-sm"} variant="danger">
+      <Button
+        size="sm"
+        onClick={signOutBtn}
+        className={"rounded-sm"}
+        variant="danger"
+      >
         <p>Log Out</p>
       </Button>
     </div>
