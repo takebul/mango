@@ -12,7 +12,7 @@ const MarqueePage = async () => {
       </Button>
 
       <Marquee pauseOnHover>
-        <div className="flex gap-7 space-x-4">
+        <div className="flex gap-7 space-x-4 mr-4">
           {books.slice(0, 8).map((book) => (
             <div key={book.id}>
               <p className="text-xl font-semibold space-x-7">

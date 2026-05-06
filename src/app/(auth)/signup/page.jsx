@@ -13,6 +13,8 @@ import {
   TextField,
 } from "@heroui/react";
 import { Icon } from "@iconify/react";
+import { error } from "better-auth/api";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -37,23 +39,37 @@ const SignUpPage = () => {
           toast.success("Sign up successful");
           router.push("/login");
         },
-        onError: (error) => {
-          toast.error(error.message);
-        },
       },
     });
+
+    if (error) {
+      toast.error(error.message);
+    }
+  };
+  const signInGoogle = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+    console.log({ data });
+    if (data) {
+      toast.success("Sign in successful");
+    }
+    if (!data) {
+      toast.error(error.message);
+    }
   };
   return (
-    <div className="border rounded-lg p-4 w-xl mx-auto my-10 bg-yellow-50">
+    <div className="border rounded-lg p-4 w-xs md:w-md mx-auto my-10 bg-slate-100 lg:w-lg">
       <Form className="flex flex-col gap-4" onSubmit={onSubmit}>
+        <h1 className="text-4xl font-bold text-center pb-4">Sign Up</h1>
         <TextField isRequired name="name" type="text">
           <Label>Name</Label>
-          <Input placeholder="Enter Your Name" />
+          <Input placeholder="Name" />
           <FieldError />
         </TextField>
         <TextField isRequired name="image" type="text">
           <Label>Image URL</Label>
-          <Input placeholder="Enter Your Image URL" />
+          <Input placeholder="Image URL" />
           <FieldError />
         </TextField>
         <TextField
@@ -68,7 +84,7 @@ const SignUpPage = () => {
           }}
         >
           <Label>Email</Label>
-          <Input placeholder="john@example.com" />
+          <Input placeholder="Email" />
           <FieldError />
         </TextField>
         <TextField
@@ -93,7 +109,7 @@ const SignUpPage = () => {
 
           <InputGroup>
             <InputGroup.Input
-              placeholder="Enter Your Password"
+              placeholder="Password"
               type={isVisible ? "text" : "password"}
             />
             <InputGroup.Suffix className="pr-0">
@@ -118,17 +134,28 @@ const SignUpPage = () => {
           <FieldError />
         </TextField>
         <div className="flex gap-2">
-          <Button type="submit">
-            <Check />
-            Submit
+          <Button className={"rounded-lg w-30"} type="submit">
+            Sign Up
           </Button>
-          <Button type="reset" variant="secondary">
+          <Button className={"rounded-lg"} type="reset" variant="secondary">
             Reset
           </Button>
         </div>
       </Form>
-      <Separator className="my-7">Or</Separator>
-      <Button className="w-full" variant="tertiary">
+      <h2 className="text-gray-500 text-center pt-6">
+        Already have an account?{" "}
+        <Link className="font-semibold text-blue-500" href={"/signin"}>
+          Sign In
+        </Link>{" "}
+      </h2>
+      <div>
+        <Separator className="my-7" />
+      </div>
+      <Button
+        onClick={signInGoogle}
+        className="w-full rounded-md"
+        variant="tertiary"
+      >
         <Icon icon="devicon:google" />
         Sign in with Google
       </Button>
