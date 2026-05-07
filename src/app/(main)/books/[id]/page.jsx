@@ -6,8 +6,6 @@ const BookDetailsPage = async ({ params }) => {
 
   const book = await getBookDetails(id);
 
-  console.log(book);
-
   return (
     <div>
       <BookDetails book={book} />

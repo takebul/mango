@@ -18,8 +18,8 @@ const Navbar = () => {
 
   const navItems = [
     { icon: House, label: "Home", href: "/" },
-    { icon: FaBook, label: "All Books", href: "all-book" },
-    { icon: Person, label: "My Profile", href: "profile" },
+    { icon: FaBook, label: "All Books", href: "/all-books" },
+    { icon: Person, label: "My Profile", href: "/profile" },
   ];
   return (
     <div className="shadow">

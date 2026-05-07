@@ -1,6 +1,7 @@
 import allBooksImg from "@/assets/books/all-books.png";
 import { Button } from "@heroui/react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Banner = () => {
   return (
@@ -23,12 +24,13 @@ const Banner = () => {
             science guides. <br /> expand your horizons with the latest in
             literature.
           </p>
-          <Button
-            size="xs sm:sm"
-            className={"absolute rounded-sm top-38 md:top-52  lg:top-64 "}
-          >
-            Browse Now
-          </Button>
+          <div className="absolute top-38 md:top-52  lg:top-64">
+            <Link href={"all-books"}>
+              <Button size="xs sm:sm" className={"rounded-sm"}>
+                Browse Now
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
