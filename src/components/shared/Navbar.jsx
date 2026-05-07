@@ -8,12 +8,14 @@ import { NavbarMenu } from "./NavbarMenu";
 import { House, Person } from "@gravity-ui/icons";
 import { FaBook } from "react-icons/fa6";
 import LogOutPage from "./LogOut";
-import { useSession } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 
 const Navbar = () => {
-  const session = useSession();
+  const { data, isPending } = useSession();
 
-  const userData = session.data;
+  console.log(isPending, "isPending");
+
+  const userData = data;
   // const user = data.user;
 
   const navItems = [
@@ -66,7 +68,9 @@ const Navbar = () => {
 
           {userData && (
             <div className="flex items-center gap-2 md:gap-4">
-              <h2 className="font-semibold">Hi, {userData?.user?.name} </h2>
+              <h2 className="font-semibold truncate text-xs md:text-sm">
+                Hi, {userData?.user?.name}{" "}
+              </h2>
               <Avatar>
                 <Avatar.Image
                   alt={userData?.user?.name}
@@ -74,6 +78,9 @@ const Navbar = () => {
                 />
                 <Avatar.Fallback>{userData?.user?.name[0]}</Avatar.Fallback>
               </Avatar>
+              {/* <Button onClick={async () => await authClient.signOut()}>
+                {isPending ? "Loading..." : "Log out"}
+              </Button> */}
               <LogOutPage />
             </div>
           )}

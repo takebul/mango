@@ -25,14 +25,16 @@ const LogOutPage = () => {
       fetchOptions: {
         onSuccess: () => {
           router.push("/");
+          router.refresh();
           toast.success("Sign out successful");
+          window.location.reload();
         },
       },
     });
   };
   return (
     <div>
-      {/* <Button>Log Out</Button> */}
+      {/* <Button onClick={signOutBtn}>Log Out</Button> */}
 
       {examples.map(
         ({ actions, body, classNames, header, status, trigger }) => (

@@ -1,5 +1,6 @@
 import { Button, Chip } from "@heroui/react";
 import Image from "next/image";
+import Link from "next/link";
 import { FaStore } from "react-icons/fa6";
 
 const BookCard = ({ book }) => {
@@ -36,13 +37,15 @@ const BookCard = ({ book }) => {
           <span className="text-red-500">({book.available_quantity})</span>{" "}
         </p>
       </div>
-      <Button
-        size="md"
-        variant="secondary"
-        className={"mt-3 w-full rounded-md"}
-      >
-        View Details
-      </Button>
+      <Link href={`/books/${book.id}`}>
+        <Button
+          size="md"
+          variant="secondary"
+          className={"mt-3 w-full rounded-md"}
+        >
+          View Details
+        </Button>
+      </Link>
     </div>
   );
 };

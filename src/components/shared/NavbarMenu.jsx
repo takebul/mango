@@ -2,6 +2,8 @@ import { Bars, House, Person } from "@gravity-ui/icons";
 import { Button, Drawer } from "@heroui/react";
 import { FaBook } from "react-icons/fa6";
 import Link from "next/link";
+import Image from "next/image";
+import logo from "@/assets/mango.png";
 
 export function NavbarMenu() {
   const navItems = [
@@ -18,14 +20,23 @@ export function NavbarMenu() {
         variant="outline"
       >
         <Bars />
-        Menu
       </Button>
       <Drawer.Backdrop>
         <Drawer.Content placement="left">
           <Drawer.Dialog>
             <Drawer.CloseTrigger />
             <Drawer.Header>
-              <Drawer.Heading>Navigation</Drawer.Heading>
+              <Drawer.Heading>
+                <Link href={"/"}>
+                  <Image
+                    className="w-55"
+                    src={logo}
+                    alt="logo"
+                    height={50}
+                    width={100}
+                  />
+                </Link>
+              </Drawer.Heading>
             </Drawer.Header>
             <Drawer.Body>
               <nav className="flex flex-col gap-1">

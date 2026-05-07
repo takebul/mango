@@ -3,7 +3,6 @@ import BookCard from "../shared/BookCard";
 
 const FeaturedBooks = async () => {
   const books = await getBooks();
-  console.log(books);
   return (
     <div className="mb-10">
       <h1 className="font-bold text-5xl text-center mb-10">Featured Books</h1>

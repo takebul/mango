@@ -15,6 +15,7 @@ const EditProfile = () => {
       name,
       image,
     });
+    window.location.reload();
   };
   return (
     <div>
