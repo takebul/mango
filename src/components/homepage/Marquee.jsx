@@ -4,7 +4,6 @@ import Marquee from "react-fast-marquee";
 
 const MarqueePage = async () => {
   const books = await getBooks();
-  console.log(books);
   return (
     <div className="my-10 border shadow shadow-lime-500 p-4 w-11/12 mx-auto flex bg-slate-100 gap-2">
       <Button variant="danger" className={"rounded-sm"}>

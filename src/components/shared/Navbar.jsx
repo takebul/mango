@@ -12,12 +12,9 @@ import { useSession } from "@/lib/auth-client";
 
 const Navbar = () => {
   const session = useSession();
-  console.log({ session }, "session");
 
   const userData = session.data;
   // const user = data.user;
-
-  console.log(userData, "user");
 
   const navItems = [
     { icon: House, label: "Home", href: "/" },

@@ -21,15 +21,15 @@ const ProfilePage = () => {
           <Avatar.Fallback>{userData?.user?.name[0]}</Avatar.Fallback>
         </Avatar>
       </div>
-      <div className="font-bold text-lg">
+      <div className="font-bold sm:text-lg">
         <p className="text-slate-300">Name</p>
         <p className="text-white">{userData?.user?.name} </p>
       </div>
-      <div className="font-bold text-lg">
+      <div className="font-bold sm:text-lg">
         <p className="text-slate-300">Email</p>
         <p className="text-white">{userData?.user?.email} </p>
       </div>
-      <div className="font-bold text-lg">
+      <div className="font-bold sm:text-lg">
         <p className="text-slate-300">Image Link</p>
         <p className="text-white text-xs">{userData?.user?.image} </p>
       </div>
