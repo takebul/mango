@@ -36,7 +36,7 @@ const SignUpPage = () => {
       image,
       fetchOptions: {
         onSuccess: () => {
-          router.push("/login");
+          router.push("/signin");
           toast.success("Sign up successful");
         },
       },

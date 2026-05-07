@@ -1,4 +1,5 @@
 "use client";
+import EditProfile from "@/components/shared/EditProfile";
 import { useSession } from "@/lib/auth-client";
 import { Avatar, Button } from "@heroui/react";
 import { FaEdit } from "react-icons/fa";
@@ -32,14 +33,9 @@ const ProfilePage = () => {
         <p className="text-slate-300">Image Link</p>
         <p className="text-white text-xs">{userData?.user?.image} </p>
       </div>
-      <Button
-        size="lg"
-        variant="outline"
-        className={"rounded-sm w-full text-white bg-slate-700 p-2 text-lg"}
-      >
-        <FaEdit />
-        Edit Profile
-      </Button>
+      <div>
+        <EditProfile />
+      </div>
     </div>
   );
 };
