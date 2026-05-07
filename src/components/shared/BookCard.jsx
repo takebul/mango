@@ -1,7 +1,6 @@
 import { Button, Chip } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaStore } from "react-icons/fa6";
 
 const BookCard = ({ book }) => {
   return (

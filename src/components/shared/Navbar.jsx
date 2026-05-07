@@ -13,8 +13,6 @@ import { authClient, useSession } from "@/lib/auth-client";
 const Navbar = () => {
   const { data, isPending } = useSession();
 
-  console.log(isPending, "isPending");
-
   const userData = data;
   // const user = data.user;
 

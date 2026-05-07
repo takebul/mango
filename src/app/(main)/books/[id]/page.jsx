@@ -1,9 +1,18 @@
-const BookDetails = () => {
+import BookDetails from "@/components/shared/BookDetails";
+import { getBookDetails } from "@/lib/data";
+
+const BookDetailsPage = async ({ params }) => {
+  const { id } = await params;
+
+  const book = await getBookDetails(id);
+
+  console.log(book);
+
   return (
     <div>
-      <h2 className="text-5xl font-bold text-center">Book Details Page</h2>
+      <BookDetails book={book} />
     </div>
   );
 };
 
-export default BookDetails;
+export default BookDetailsPage;

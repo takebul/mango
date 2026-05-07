@@ -2,7 +2,6 @@
 import EditProfile from "@/components/shared/EditProfile";
 import { useSession } from "@/lib/auth-client";
 import { Avatar, Button } from "@heroui/react";
-import { FaEdit } from "react-icons/fa";
 
 const ProfilePage = () => {
   const session = useSession();
