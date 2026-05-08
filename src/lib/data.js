@@ -15,3 +15,25 @@ export const getBooksCategories = async () => {
   const categories = await res.json();
   return categories;
 };
+
+// export const getSearchBooks = async (search = "") => {
+//   const res = await fetch(
+//     `https://mango-json-server.onrender.com/books?title_like=${search}`,
+//     // { cache: "no-store" },
+//   );
+//   const books = res.json();
+
+//   return books;
+// };
+
+// export const getSearchBooks = async (search) => {
+//   const url = search
+//     ? `https://mango-json-server.onrender.com/books?title_like=${search}`
+//     : `https://mango-json-server.onrender.com/books`;
+
+//   const res = await fetch(url, {
+//     cache: "no-store",
+//   });
+
+//   return res.json();
+// };
