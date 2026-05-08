@@ -9,3 +9,9 @@ export const getBookDetails = async (id) => {
   const books = await res.json();
   return books;
 };
+
+export const getBooksCategories = async () => {
+  const res = await fetch("https://mango-json-server.onrender.com/categories");
+  const categories = await res.json();
+  return categories;
+};
