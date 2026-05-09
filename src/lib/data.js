@@ -27,3 +27,9 @@ export const getSearchBooks = async (search = "") => {
 
   return searchTitle;
 };
+
+export const getBookReviews = async () => {
+  const res = await fetch("https://mango-json-server.onrender.com/reviews");
+  const reviews = await res.json();
+  return reviews;
+};
