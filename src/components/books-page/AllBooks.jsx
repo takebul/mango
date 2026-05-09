@@ -5,7 +5,7 @@ import Link from "next/link";
 const AllBooks = ({ book }) => {
   return (
     <div>
-      <div className="border p-4 rounded-md shadow-lg bg-slate-100">
+      <div className="border p-4 rounded-md shadow-md bg-slate-100">
         <div className="relative aspect-square">
           <Image
             className="w-full absolute object-cover rounded-md"

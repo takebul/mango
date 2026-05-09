@@ -1,16 +1,18 @@
-// import { getSearchBooks } from "@/lib/data";
-// import SearchBookInputForm from "./SearchBookInputForm";
+import { getSearchBooks } from "@/lib/data";
+import SearchBookInputForm from "./SearchBookInputForm";
 
-// const SearchBook = async ({ searchParams }) => {
-//   const search = searchParams?.search || "";
+const SearchBook = async ({ searchParams }) => {
+  const search = await searchParams;
 
-//   await getSearchBooks(search);
+  const searchBooks = await getSearchBooks(search);
 
-//   return (
-//     <div>
-//       <SearchBookInputForm />
-//     </div>
-//   );
-// };
+  console.log({ searchTitle }, "search_title");
 
-// export default SearchBook;
+  return (
+    <div>
+      <SearchBookInputForm />
+    </div>
+  );
+};
+
+export default SearchBook;
