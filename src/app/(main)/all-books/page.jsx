@@ -1,6 +1,5 @@
 import AllBooks from "@/components/books-page/AllBooks";
 import CategorySidebar from "@/components/books-page/CategorySidebar";
-import SearchBook from "@/components/books-page/SearchBook";
 import SearchBookInputForm from "@/components/books-page/SearchBookInputForm";
 import { getBooks, getSearchBooks } from "@/lib/data";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
@@ -34,13 +33,13 @@ const AllBooksPage = async ({ searchParams }) => {
           <p className="pt-1">Please try another one</p>
         </div>
       ) : (
-        <div className="grid grid-cols-6 gap-6 p-4">
+        <div className="grid md:grid-cols-6 gap-4 p-4">
           <div className="col-span-1">
             <CategorySidebar />
           </div>
 
           <div className="col-span-5">
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid w-11/12 mx-auto sm:grid-cols-2 gap-4 md:grid-cols-3">
               {filteredCategory.map((book) => (
                 <AllBooks key={book.id} book={book} />
               ))}

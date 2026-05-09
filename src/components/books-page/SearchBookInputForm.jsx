@@ -30,7 +30,7 @@ const SearchBookInputForm = () => {
           <SearchField.Group>
             <SearchField.SearchIcon />
             <SearchField.Input
-              className="w-150 mx-auto"
+              className="mx-auto sm:w-75 md:w-100 lg:w-150"
               placeholder="Search books..."
             />
             <SearchField.ClearButton />
@@ -38,7 +38,7 @@ const SearchBookInputForm = () => {
         </SearchField>
 
         <Button
-          className="w-30 mt-6 rounded-md"
+          className="mt-6 rounded-md sm:w-30"
           isPending={isSubmitting}
           type="submit"
           variant="primary"

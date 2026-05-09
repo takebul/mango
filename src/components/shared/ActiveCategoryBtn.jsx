@@ -20,7 +20,7 @@ const ActiveCategoryBtn = ({ category }) => {
     <Button
       onClick={handleNavigation}
       variant="outline"
-      className={`w-full rounded-lg transition-colors ${
+      className={` px-10 rounded-lg transition-colors w-25 md:w-34 ${
         isActive ? "bg-green-500 text-white" : "text-black"
       }`}
     >
