@@ -8,7 +8,7 @@ import logo from "@/assets/mango.png";
 export function NavbarMenu() {
   const navItems = [
     { icon: House, label: "Home", href: "/" },
-    { icon: FaBook, label: "All Books", href: "/all-book" },
+    { icon: FaBook, label: "All Books", href: "/all-books" },
     { icon: Person, label: "My Profile", href: "/profile" },
   ];
 
