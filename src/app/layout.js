@@ -1,3 +1,5 @@
+import dns from "node:dns";
+dns.setServers(["8.8.8.8", "8.8.4.4"]); //google dns
 import { Manrope } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
