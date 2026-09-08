@@ -1,5 +1,11 @@
 <div align="center">
 
+<a href="https://mango-books-platform.vercel.app">
+  <img src="src/assets/logo.png" alt="Mango Books Logo" width="110" style="border-radius: 24px; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);" />
+</a>
+
+<br />
+
 # 🥭 Mango Books
 ### *Modern Community Digital Library & Free Book Borrowing Platform*
 
