@@ -1,111 +1,88 @@
 "use client";
-import book1 from "@/assets/books/book1.png";
-import book2 from "@/assets/books/book2.png";
-import book3 from "@/assets/books/book3.png";
-import book4 from "@/assets/books/book4.png";
-import book5 from "@/assets/books/book5.png";
-import book6 from "@/assets/books/book6.png";
-import book7 from "@/assets/books/book7.png";
-import book8 from "@/assets/books/book8.png";
+
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCube, Autoplay, FreeMode } from "swiper/modules";
-
+import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/effect-cube";
-import "swiper/css/navigation";
-import Image from "next/image";
+import "swiper/css/pagination";
+import BookCard from "./BookCard";
+import { FiTrendingUp } from "react-icons/fi";
+import Link from "next/link";
 
-const SwiperPage = () => {
+const SwiperPage = ({ books = [] }) => {
+  const displayBooks = books && books.length > 0 ? books : [];
+
+  if (displayBooks.length === 0) return null;
+
   return (
-    <div className="container mx-auto">
-      <Swiper
-        modules={[EffectCube, Autoplay, FreeMode]}
-        effect="slide"
-        speed={10000}
-        loop={true}
-        cubeEffect={{
-          shadowOffset: 25,
-          shadowScale: 0.9,
-        }}
-        autoplay={{
-          delay: 2000,
-        }}
-        mousewheel={true}
-      >
-        <SwiperSlide>
-          <Image
-            className="w-full h-[70vh] object-contain"
-            src={book1}
-            width={300}
-            height={400}
-            alt="book"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            className="w-full h-[70vh] object-contain"
-            src={book2}
-            width={300}
-            height={400}
-            alt="book"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            className="w-full h-[70vh] object-contain"
-            src={book3}
-            width={300}
-            height={400}
-            alt="book"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            className="w-full h-[70vh] object-contain"
-            src={book4}
-            width={300}
-            height={400}
-            alt="book"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            className="w-full h-[70vh] object-contain"
-            src={book5}
-            width={300}
-            height={400}
-            alt="book"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            className="w-full h-[70vh] object-contain"
-            src={book6}
-            width={300}
-            height={400}
-            alt="book"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            className="w-full h-[70vh] object-contain"
-            src={book7}
-            width={300}
-            height={400}
-            alt="book"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            className="w-full h-[70vh] object-contain"
-            src={book8}
-            width={300}
-            height={400}
-            alt="book"
-          />
-        </SwiperSlide>
-      </Swiper>
-    </div>
+    <section className="py-14 bg-slate-100/60 border-y border-slate-200/70">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+          <div>
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-600 mb-2">
+              <FiTrendingUp className="size-4" />
+              <span>Trending Now</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+              Community Favorites
+            </h2>
+            <p className="text-sm text-slate-600 mt-1">
+              The most borrowed and highest rated books this week
+            </p>
+          </div>
+
+          <Link
+            href="/all-books"
+            className="text-xs sm:text-sm font-bold text-amber-600 hover:text-amber-700 flex items-center gap-1 transition"
+          >
+            <span>View all books →</span>
+          </Link>
+        </div>
+
+        {/* Carousel */}
+        <Swiper
+          modules={[Autoplay, Pagination]}
+          spaceBetween={20}
+          slidesPerView={1}
+          speed={700}
+          loop={displayBooks.length > 4}
+          autoplay={{
+            delay: 3500,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
+          pagination={{
+            clickable: true,
+            dynamicBullets: true,
+          }}
+          breakpoints={{
+            540: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 24,
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 24,
+            },
+          }}
+          className="pb-12"
+        >
+          {displayBooks.map((book) => (
+            <SwiperSlide key={`swiper-${book.id}`} className="h-auto pb-8">
+              <div className="h-full">
+                <BookCard book={book} />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </section>
   );
 };
+
 export default SwiperPage;
+

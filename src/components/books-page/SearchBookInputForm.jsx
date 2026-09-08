@@ -2,170 +2,78 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { Button, Form, Label, SearchField, Spinner } from "@heroui/react";
+import { FiSearch, FiX } from "react-icons/fi";
 
 const SearchBookInputForm = () => {
-  const [value, setValue] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
+  const currentQuery = searchParams.get("search") || "";
+  const [value, setValue] = useState(currentQuery);
+  const [prevQuery, setPrevQuery] = useState(currentQuery);
+
+  if (prevQuery !== currentQuery) {
+    setPrevQuery(currentQuery);
+    setValue(currentQuery);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    setIsSubmitting(true);
-
     const params = new URLSearchParams(searchParams.toString());
-    params.set("search", value);
-    router.push(`/all-books?${params.toString()}`);
+    const trimmed = value.trim();
 
-    setIsSubmitting(false);
+    if (trimmed) {
+      params.set("search", trimmed);
+    } else {
+      params.delete("search");
+    }
+
+    router.push(`/all-books?${params.toString()}`);
+  };
+
+  const handleClear = () => {
+    setValue("");
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("search");
+    router.push(`/all-books?${params.toString()}`);
   };
 
   return (
-    <div className="my-10 justify-items-center">
-      <Form className="flex gap-2" onSubmit={handleSubmit}>
-        <SearchField isRequired name="search" value={value} onChange={setValue}>
-          <Label>Search books</Label>
-          <SearchField.Group>
-            <SearchField.SearchIcon />
-            <SearchField.Input
-              className="mx-auto sm:w-75 md:w-100 lg:w-150"
-              placeholder="Search books..."
-            />
-            <SearchField.ClearButton />
-          </SearchField.Group>
-        </SearchField>
+    <div className="w-full max-w-2xl mx-auto px-4 my-8">
+      <form onSubmit={handleSubmit} className="relative flex items-center shadow-lg shadow-slate-200/50 rounded-2xl bg-white border border-slate-200 focus-within:border-amber-400 focus-within:ring-4 focus-within:ring-amber-400/10 transition-all p-1.5">
+        <div className="pl-3.5 text-slate-400">
+          <FiSearch className="size-5" />
+        </div>
 
-        <Button
-          className="mt-6 rounded-md sm:w-30"
-          isPending={isSubmitting}
+        <input
+          type="text"
+          name="search"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="Search by title, author, or keyword..."
+          className="w-full bg-transparent px-3 py-2 text-sm sm:text-base text-slate-900 placeholder-slate-400 focus:outline-none"
+        />
+
+        {value && (
+          <button
+            type="button"
+            onClick={handleClear}
+            className="p-1.5 text-slate-400 hover:text-slate-600 rounded-full hover:bg-slate-100 transition mr-1"
+            title="Clear search"
+          >
+            <FiX className="size-4" />
+          </button>
+        )}
+
+        <button
           type="submit"
-          variant="primary"
+          className="shrink-0 px-5 py-2.5 text-xs sm:text-sm font-bold text-white mango-btn-gradient rounded-xl transition shadow-md shadow-amber-500/20"
         >
-          {isSubmitting ? (
-            <>
-              <Spinner color="current" size="sm" /> Searching...
-            </>
-          ) : (
-            "Search"
-          )}
-        </Button>
-      </Form>
+          Search
+        </button>
+      </form>
     </div>
   );
 };
 
 export default SearchBookInputForm;
 
-// "use client";
-
-// import { getSearchBooks } from "@/lib/data";
-// import {
-//   Button,
-//   Description,
-//   FieldError,
-//   Form,
-//   Label,
-//   SearchField,
-//   Spinner,
-// } from "@heroui/react";
-// import { useRouter, useSearchParams } from "next/navigation";
-// import React, { useState } from "react";
-
-// const SearchBookInputForm = () => {
-//   const [searchValue, setSearchValue] = useState("");
-//   const router = useRouter();
-//   const searchParams = useSearchParams();
-
-//   console.log(searchValue, "searchValue");
-
-//   const handleSearch = async (e) => {
-//     const bookSearch = await getSearchBooks(value);
-
-//     console.log(bookSearch, "bookSearch");
-
-//     // const params = new URLSearchParams(searchParams);
-//     // params.set("search", searchValue);
-//     // router.push(`/all-books?${params.toString()}`);
-//   };
-
-//   const [value, setValue] = useState("");
-//   const [isSubmitting, setIsSubmitting] = useState(false);
-//   const MIN_LENGTH = 3;
-//   const isInvalid = value.length > 0 && value.length < MIN_LENGTH;
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-
-//     if (value.length < MIN_LENGTH) {
-//       return;
-//     }
-
-//     setIsSubmitting(true);
-
-//     // Simulate API call
-//     setTimeout(() => {
-//       console.log("Search submitted:", { query: value });
-//       setValue("");
-//       setIsSubmitting(false);
-//     }, 1500);
-//   };
-
-//   return (
-//     <div className="my-10">
-//       <Form
-//         className="flex w-200 mx-auto flex-col gap-4"
-//         onSubmit={handleSubmit}
-//       >
-//         <SearchField
-//           isRequired
-//           isInvalid={isInvalid}
-//           name="search"
-//           value={value}
-//           onChange={setValue}
-//         >
-//           <Label>Search products</Label>
-//           <SearchField.Group>
-//             <SearchField.SearchIcon />
-//             <SearchField.Input
-//               value={searchValue}
-//               onChange={(e) => setSearchValue(e.target.value)}
-//               className="w-full"
-//               placeholder="Search products..."
-//             />
-//             <SearchField.ClearButton />
-//           </SearchField.Group>
-//           {isInvalid ? (
-//             <FieldError>
-//               Search query must be at least {MIN_LENGTH} characters
-//             </FieldError>
-//           ) : (
-//             <Description>
-//               Enter at least {MIN_LENGTH} characters to search
-//             </Description>
-//           )}
-//         </SearchField>
-//         <Button
-//           onClick={handleSearch}
-//           className="w-full"
-//           isDisabled={value.length < MIN_LENGTH}
-//           isPending={isSubmitting}
-//           type="submit"
-//           variant="primary"
-//         >
-//           {isSubmitting ? (
-//             <>
-//               <Spinner color="current" size="sm" />
-//               Searching...
-//             </>
-//           ) : (
-//             "Search"
-//           )}
-//         </Button>
-//       </Form>
-//     </div>
-//   );
-// };
-
-// export default SearchBookInputForm;

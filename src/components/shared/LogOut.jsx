@@ -3,72 +3,75 @@
 import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { toast } from "react-toastify";
+import { FiLogOut } from "react-icons/fi";
 
 const LogOutPage = () => {
-  const examples = [
-    {
-      actions: {
-        cancel: "Stay Signed In",
-        confirm: "Sign Out",
-      },
-      body: "You'll need to sign in again to access your account. Any unsaved changes will be lost.",
-      classNames: "rounded-sm",
-      header: "Sign out of your account?",
-      status: "accent",
-      trigger: "Sign Out",
-    },
-  ];
   const router = useRouter();
-  const signOutBtn = async () => {
-    await authClient.signOut({
-      fetchOptions: {
-        onSuccess: () => {
-          router.push("/");
-          router.refresh();
-          toast.success("Sign out successful");
-          window.location.reload();
-        },
-      },
-    });
-  };
-  return (
-    <div>
-      {/* <Button onClick={signOutBtn}>Log Out</Button> */}
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
-      {examples.map(
-        ({ actions, body, classNames, header, status, trigger }) => (
-          <AlertDialog key={status}>
-            <Button size="sm" variant="danger" className={classNames}>
-              {trigger}
-            </Button>
-            <AlertDialog.Backdrop>
-              <AlertDialog.Container>
-                <AlertDialog.Dialog className="sm:max-w-100">
-                  <AlertDialog.CloseTrigger />
-                  <AlertDialog.Header>
-                    <AlertDialog.Icon status={status} />
-                    <AlertDialog.Heading>{header}</AlertDialog.Heading>
-                  </AlertDialog.Header>
-                  <AlertDialog.Body>
-                    <p>{body}</p>
-                  </AlertDialog.Body>
-                  <AlertDialog.Footer>
-                    <Button slot="close" variant="tertiary">
-                      {actions.cancel}
-                    </Button>
-                    <Button onClick={signOutBtn} slot="close" variant="danger">
-                      {actions.confirm}
-                    </Button>
-                  </AlertDialog.Footer>
-                </AlertDialog.Dialog>
-              </AlertDialog.Container>
-            </AlertDialog.Backdrop>
-          </AlertDialog>
-        ),
-      )}
-    </div>
+  const signOutBtn = async () => {
+    try {
+      setIsLoggingOut(true);
+      await authClient.signOut();
+      toast.success("Signed out successfully");
+      router.push("/");
+      router.refresh();
+    } catch {
+      toast.error("Failed to sign out");
+    } finally {
+      setIsLoggingOut(false);
+    }
+  };
+
+  return (
+    <AlertDialog>
+      <Button
+        size="sm"
+        variant="ghost"
+        className="text-rose-600 hover:text-rose-700 hover:bg-rose-50 border border-rose-200 rounded-lg flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold"
+      >
+        <FiLogOut className="size-3.5" />
+        <span>Sign Out</span>
+      </Button>
+      <AlertDialog.Backdrop>
+        <AlertDialog.Container>
+          <AlertDialog.Dialog className="sm:max-w-md p-6 bg-white rounded-2xl shadow-2xl border border-slate-100">
+            <AlertDialog.CloseTrigger />
+            <AlertDialog.Header>
+              <AlertDialog.Heading className="text-xl font-bold text-slate-900">
+                Sign out of your account?
+              </AlertDialog.Heading>
+            </AlertDialog.Header>
+            <AlertDialog.Body className="py-3">
+              <p className="text-sm text-slate-600">
+                You will need to sign in again to access your borrowed books and profile details.
+              </p>
+            </AlertDialog.Body>
+            <AlertDialog.Footer className="flex justify-end gap-2 pt-4">
+              <Button
+                slot="close"
+                variant="outline"
+                className="px-4 py-2 rounded-lg text-sm text-slate-700 border-slate-300 hover:bg-slate-50"
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={signOutBtn}
+                slot="close"
+                isPending={isLoggingOut}
+                className="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-rose-600 hover:bg-rose-700 transition"
+              >
+                Confirm Sign Out
+              </Button>
+            </AlertDialog.Footer>
+          </AlertDialog.Dialog>
+        </AlertDialog.Container>
+      </AlertDialog.Backdrop>
+    </AlertDialog>
   );
 };
 
 export default LogOutPage;
+

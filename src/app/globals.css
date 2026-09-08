@@ -1,2 +1,148 @@
 @import "tailwindcss";
 @import "@heroui/styles";
+
+@layer base {
+  :root {
+    --brand-mango: #f59e0b;
+    --brand-mango-dark: #d97706;
+    --brand-orange: #ea580c;
+    --brand-charcoal: #0f172a;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Glassmorphism & Modern Accents */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Book Cover 3D Depth */
+.book-spine-effect {
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  transform-origin: center left;
+}
+
+.book-spine-effect:hover {
+  transform: translateY(-4px) rotateY(-3deg) scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.book-spine-effect::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 12px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(0, 0, 0, 0.12) 60%,
+    transparent 100%
+  );
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Subtle Gradient Glows */
+.mango-gradient-text {
+  background: linear-gradient(135deg, #f59e0b 0%, #ea580c 50%, #dc2626 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.mango-btn-gradient {
+  background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+  transition: all 0.25s ease;
+}
+
+.mango-btn-gradient:hover {
+  background: linear-gradient(135deg, #fbbf24 0%, #f97316 100%);
+  box-shadow: 0 10px 20px -5px rgba(234, 88, 12, 0.35);
+  transform: translateY(-1px);
+}
+
+/* Custom modern scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Image Shimmer Skeleton */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #f1f5f9 25%, #fef3c7 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite linear;
+}
+
+/* Eye-Catching Shimmer Wave for Image Skeletons */
+@keyframes shimmerWave {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.shimmer-wave {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-wave::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmerWave 1.6s infinite ease-in-out;
+  pointer-events: none;
+}
+
+
+

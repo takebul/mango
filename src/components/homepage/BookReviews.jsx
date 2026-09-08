@@ -1,29 +1,37 @@
 import { getBookReviews } from "@/lib/data";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import ReviewCard from "../shared/ReviewCard";
+import { FiMessageSquare } from "react-icons/fi";
 
 const BookReviews = async () => {
   const bookReviews = await getBookReviews();
+
   return (
-    <div className="relative my-10 mb-20 w-11/12 mx-auto">
-      <div className="opacity-20 bg-yellow-100">
-        <DotLottieReact
-          src="https://lottie.host/45f3f5cd-307b-4409-9c9f-3994c0c01cba/zQUhzAxzjq.lottie"
-          //   loop
-          autoplay
-        />
+    <section className="py-20 bg-gradient-to-b from-slate-50 to-amber-50/40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-600 mb-2">
+            <FiMessageSquare className="size-4" />
+            <span>Community Stories</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            Loved by Passionate Readers
+          </h2>
+          <p className="text-sm sm:text-base text-slate-600 mt-2">
+            See how Mango helps students, researchers, and book lovers discover their next favorite reads.
+          </p>
+        </div>
+
+        {/* Reviews Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {bookReviews.slice(0, 3).map((review) => (
+            <ReviewCard key={`review-${review.id}`} review={review} />
+          ))}
+        </div>
       </div>
-      <div className="text-center absolute top-10 left-10 right-10">
-        <h6 className="text-xl font-bold text-red-500">HAPPY READERS</h6>
-        <h2 className="text-5xl font-bold">Reviews By Readers</h2>
-      </div>
-      <div className="absolute top-40 mb-10 left-3 right-3 grid gap-4 w-9/12 mx-auto md:grid-cols-2">
-        {bookReviews.slice(0, 2).map((review) => (
-          <ReviewCard key={review.id} review={review} />
-        ))}
-      </div>
-    </div>
+    </section>
   );
 };
 
 export default BookReviews;
+
